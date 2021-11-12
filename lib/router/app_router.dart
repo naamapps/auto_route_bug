@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:auto_route_bug/widgets/demo_page.dart';
 import 'package:auto_route_bug/widgets/first_page.dart';
 import 'package:auto_route_bug/widgets/home_with_nav.dart';
 import 'package:auto_route_bug/widgets/second_page.dart';
@@ -9,34 +10,44 @@ import 'package:auto_route_bug/widgets/second_page.dart';
     AutoRoute(
       path: '/',
       name: 'HomeRouter',
-      page: HomeWithNav,
+      page: EmptyRouterPage,
       initial: true,
       children: [
         AutoRoute(
           path: '',
-          name: 'FirstRouter',
-          page: EmptyRouterPage,
+          name: 'NavRouter',
+          page: HomeWithNav,
           initial: true,
           children: [
             AutoRoute(
-              path: 'first',
-              page: FirstPage,
+              path: '',
+              name: 'FirstRouter',
+              page: EmptyRouterPage,
               initial: true,
+              children: [
+                AutoRoute(
+                  path: 'first',
+                  page: FirstPage,
+                  initial: true,
+                ),
+                _secondRoute,
+              ],
             ),
             AutoRoute(
-              path: 'second',
-              page: SecondPage,
-              initial: true,
+              path: 'demo',
+              page: DemoPage,
             ),
           ],
         ),
-        AutoRoute(
-          path: 'second',
-          page: SecondPage,
-        ),
+        _secondRoute,
       ],
     ),
     RedirectRoute(path: '*', redirectTo: '/'),
   ],
 )
 class $AppRouter {}
+
+const AutoRoute _secondRoute = AutoRoute(
+  path: 'second',
+  page: SecondPage,
+);

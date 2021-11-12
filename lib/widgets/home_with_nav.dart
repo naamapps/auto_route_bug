@@ -11,7 +11,7 @@ class HomeWithNav extends StatelessWidget {
       extendBody: true,
       routes: const [
         FirstRouter(),
-        SecondRoute(),
+        DemoRoute(),
       ],
       builder: (context, child, animation) => child,
       bottomNavigationBuilder: (context, tabsRouter) {
@@ -23,7 +23,7 @@ class HomeWithNav extends StatelessWidget {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.search),
-              label: 'Second',
+              label: 'Demo',
             ),
           ],
           currentIndex: tabsRouter.activeIndex,
