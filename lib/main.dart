@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_route_bug/router/app_router.gr.dart';
 import 'package:flutter/material.dart';
 
@@ -6,6 +7,8 @@ void main() {
 }
 
 final appRouter = AppRouter();
+StackRouter? get homeRouter =>
+    appRouter.innerRouterOf(HomeRouter.name) as StackRouter?;
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

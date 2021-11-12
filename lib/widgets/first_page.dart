@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:auto_route_bug/main.dart';
 import 'package:auto_route_bug/router/app_router.gr.dart';
 import 'package:flutter/material.dart';
 
@@ -17,11 +18,7 @@ class FirstPage extends StatelessWidget {
             TextButton(
               onPressed: () {
                 showDialog(
-                  context: (AutoRouter.of(context)
-                          .root
-                          .innerRouterOf(HomeRouter.name) as StackRouter?)!
-                      .navigatorKey
-                      .currentContext!,
+                  context: homeRouter!.navigatorKey.currentContext!,
                   // If this is true, the dialog will cover the entire screen. And when pushing the second page, it will be behind the dialog.
                   // If this is false, the dialog will cover only the route (without the nav bar - this is good), and when pushing the second page, it will throw the setState() or markNeedsBuild() called during build erorr.
                   useRootNavigator: false,
@@ -44,6 +41,14 @@ class FirstPage extends StatelessWidget {
                 AutoRouter.of(context).push(const SecondRoute());
               },
               child: const Text('Open Nested Second Page'),
+            ),
+            // Another bug! This push should be above everything but it is still opening the nested route.
+            TextButton(
+              onPressed: () {
+                homeRouter!.push(const SecondRoute());
+              },
+              child: const Text(
+                  'Open Second Page From HomeRouter (Should hide bottom navbar)'),
             ),
           ],
         ),
