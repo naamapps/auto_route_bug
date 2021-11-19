@@ -49,5 +49,13 @@ class $AppRouter {}
 
 const AutoRoute _secondRoute = AutoRoute(
   path: 'second',
-  page: SecondPage,
+  name: "SecondRouter",
+  page: EmptyRouterPage,
+  children: [
+    AutoRoute(
+      path: '',
+      page: SecondPage,
+      initial: true,
+    ),
+  ],
 );

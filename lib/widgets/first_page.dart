@@ -26,7 +26,8 @@ class FirstPage extends StatelessWidget {
                     return AlertDialog(
                       title: TextButton(
                         onPressed: () {
-                          AutoRouter.of(context).push(const SecondRoute());
+                          AutoRouter.of(context).push(
+                              const SecondRouter(children: [SecondRoute()]));
                         },
                         child: const Text('Open Second Page'),
                       ),
@@ -38,14 +39,15 @@ class FirstPage extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                AutoRouter.of(context).push(const SecondRoute());
+                AutoRouter.of(context)
+                    .push(const SecondRouter(children: [SecondRoute()]));
               },
               child: const Text('Open Nested Second Page'),
             ),
             // Another bug! This push should be above everything but it is still opening the nested route.
             TextButton(
               onPressed: () {
-                homeRouter!.push(const SecondRoute());
+                homeRouter!.push(const SecondRouter(children: [SecondRoute()]));
               },
               child: const Text(
                   'Open Second Page From HomeRouter (Should hide bottom navbar)'),

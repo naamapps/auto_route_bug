@@ -1,3 +1,5 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:auto_route_bug/router/app_router.gr.dart';
 import 'package:flutter/material.dart';
 
 class SecondPage extends StatelessWidget {
@@ -9,7 +11,15 @@ class SecondPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Second Page'),
       ),
-      body: const Center(child: Text('Second Page')),
+      body: Center(
+        child: TextButton(
+          child: const Text('Open Second Page Again'),
+          onPressed: () {
+            AutoRouter.of(context)
+                .push(const SecondRouter(children: [SecondRoute()]));
+          },
+        ),
+      ),
     );
   }
 }
