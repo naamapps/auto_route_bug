@@ -26,8 +26,10 @@ class FirstPage extends StatelessWidget {
                     return AlertDialog(
                       title: TextButton(
                         onPressed: () {
-                          AutoRouter.of(context).push(
-                              const SecondRouter(children: [SecondRoute()]));
+                          AutoRouter.of(context)
+                              .navigate(const HomeRouter(children: [
+                            SecondRouter(children: [SecondRoute()])
+                          ]));
                         },
                         child: const Text('Open Second Page'),
                       ),
