@@ -18,10 +18,10 @@ class FirstPage extends StatelessWidget {
             TextButton(
               onPressed: () {
                 showDialog(
-                  context: homeRouter!.navigatorKey.currentContext!,
-                  // If this is true, the dialog will cover the entire screen. And when pushing the second page, it will be behind the dialog.
-                  // If this is false, the dialog will cover only the route (without the nav bar - this is good), and when pushing the second page, it will throw the setState() or markNeedsBuild() called during build erorr.
-                  useRootNavigator: false,
+                  context: context,
+                  // If this is true, the dialog will cover the entire screen. And when pushing the second page, it will be behind the dialog (not good - bug!).
+                  // If this is false, the dialog will cover only the route (without the nav bar - this is good), and when pushing the second page, it will be above the dialog (good - no bug!).
+                  useRootNavigator: true,
                   builder: (context) {
                     return AlertDialog(
                       title: TextButton(
